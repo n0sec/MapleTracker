@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
+import 'screens/home.dart';
 import 'screens/login.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MapleTracker());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MapleTracker extends StatelessWidget {
+  const MapleTracker({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: const LoginScreen(),
+      initialRoute: 'login',
+      routes: {
+        '/': (ctx) => const HomeScreen(
+              title: 'Home',
+            ),
+        'login': (ctx) => const LoginScreen(
+              title: 'Log in',
+            ),
+      },
+      debugShowCheckedModeBanner: false,
     );
   }
 }
