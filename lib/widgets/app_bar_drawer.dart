@@ -38,26 +38,50 @@ class AppBarDrawer extends StatelessWidget {
               onTap: () => {
                 // If the current route is '/' (Home)
                 // Just close the drawer
-                if (ModalRoute.of(context)!.settings.name == '/')
+                if (ModalRoute.of(context)!.settings.name == '/home')
                   {
                     Navigator.pop(context),
                   }
                 // Else, push '/' to the routes
                 else
                   {
-                    Navigator.pushReplacementNamed(context, '/'),
+                    Navigator.pushReplacementNamed(context, '/home'),
                   }
               },
             ),
-            ListTile(
+            ExpansionTile(
               leading: const Icon(Icons.view_day_outlined),
+              trailing: const Icon(Icons.arrow_drop_down),
               title: const Text('Dailies'),
-              onTap: () => {}, // TODO: Open the Dailies Screen
+              children: [
+                ListTile(
+                  title: const Text('Bosses'),
+                  onTap: () => {}, // TODO: Open the Daily Bosses Screen
+                ),
+                ListTile(
+                  title: const Text('Tasks'),
+                  onTap: () => {}, // TODO: Open the Daily Tasks Screen
+                ),
+                ListTile(
+                  title: const Text('Arcane River'),
+                  onTap: () => {}, // TODO: Open the Daily Arcane River Screen
+                ),
+              ],
             ),
-            ListTile(
+            ExpansionTile(
               leading: const Icon(Icons.view_week_outlined),
-              title: const Text('Weeklies'), // TODO: Open the Weeklies Screen
-              onTap: () => {},
+              trailing: const Icon(Icons.arrow_drop_down),
+              title: const Text('Weeklies'),
+              children: [
+                ListTile(
+                  title: const Text('Bosses'),
+                  onTap: () => {}, // TODO: Open the Weekly Bosses Screen
+                ),
+                ListTile(
+                  title: const Text('Tasks'),
+                  onTap: () => {}, // TODO: Open the Weekly Tasks Screen
+                )
+              ],
             ),
           ],
         ),
