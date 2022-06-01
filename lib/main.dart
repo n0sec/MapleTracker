@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:maple_tracker/screens/character.dart';
 import 'package:maple_tracker/screens/settings.dart';
 import 'screens/home.dart';
-import 'screens/login.dart';
 
 void main() {
   runApp(const MapleTracker());
@@ -18,16 +18,16 @@ class MapleTracker extends StatelessWidget {
         primarySwatch: Colors.orange,
         textTheme: GoogleFonts.interTextTheme(),
       ),
-      initialRoute: 'home',
+      initialRoute: '/character',
       routes: {
-        '/': (ctx) => const HomeScreen(
+        '/home': (context) => const HomeScreen(
               title: 'Home',
-            ),
-        '/login': (ctx) => const LoginScreen(
-              title: 'Login',
             ),
         '/settings': (context) => const SettingsScreen(
               title: 'Settings',
+            ),
+        '/character': (context) => const CharacterScreen(
+              title: 'Character Select',
             ),
       },
       debugShowCheckedModeBanner: false,
