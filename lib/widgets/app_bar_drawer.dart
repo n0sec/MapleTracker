@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:maple_tracker/widgets/divider_with_subheader.dart';
 
 class AppBarDrawer extends StatelessWidget {
-  const AppBarDrawer({Key? key, required this.title}) : super(key: key);
+  const AppBarDrawer({Key? key, required this.title, this.body})
+      : super(key: key);
 
   final String title;
+  final Widget? body;
 
   @override
   Widget build(BuildContext context) {
@@ -42,50 +45,52 @@ class AppBarDrawer extends StatelessWidget {
                   {
                     Navigator.pop(context),
                   }
-                // Else, push '/' to the routes
+                // Else, push '/' to the routes as a replacement
                 else
                   {
                     Navigator.pushReplacementNamed(context, '/home'),
                   }
               },
             ),
-            ExpansionTile(
-              leading: const Icon(Icons.view_day_outlined),
-              trailing: const Icon(Icons.arrow_drop_down),
-              title: const Text('Dailies'),
-              children: [
-                ListTile(
-                  title: const Text('Bosses'),
-                  onTap: () => {}, // TODO: Open the Daily Bosses Screen
-                ),
-                ListTile(
-                  title: const Text('Tasks'),
-                  onTap: () => {}, // TODO: Open the Daily Tasks Screen
-                ),
-                ListTile(
-                  title: const Text('Arcane River'),
-                  onTap: () => {}, // TODO: Open the Daily Arcane River Screen
-                ),
-              ],
+            ListTile(
+              leading: const Icon(Icons.person_add),
+              title: const Text('Character Select'),
+              onTap: () =>
+                  Navigator.pushReplacementNamed(context, '/character-select'),
             ),
-            ExpansionTile(
-              leading: const Icon(Icons.view_week_outlined),
-              trailing: const Icon(Icons.arrow_drop_down),
-              title: const Text('Weeklies'),
-              children: [
-                ListTile(
-                  title: const Text('Bosses'),
-                  onTap: () => {}, // TODO: Open the Weekly Bosses Screen
-                ),
-                ListTile(
-                  title: const Text('Tasks'),
-                  onTap: () => {}, // TODO: Open the Weekly Tasks Screen
-                )
-              ],
+            const DividerWithSubheader(subheaderText: 'Dailies'),
+            ListTile(
+              leading: Icon(Icons.adb),
+              title: const Text('Bosses'),
+              onTap: () => Navigator.popAndPushNamed(context, '/daily-bosses'),
+            ),
+            ListTile(
+              leading: Icon(Icons.abc),
+              title: const Text('Tasks'),
+              onTap: () => Navigator.popAndPushNamed(context, '/daily-tasks'),
+            ),
+            ListTile(
+              leading: Icon(Icons.access_alarms_rounded),
+              title: const Text('Arcane River'),
+              onTap: () =>
+                  Navigator.popAndPushNamed(context, '/daily-arcane-river'),
+            ),
+            const DividerWithSubheader(subheaderText: 'Weeklies'),
+            ListTile(
+              leading: Icon(Icons.adb),
+              title: const Text('Bosses'),
+              onTap: () => Navigator.popAndPushNamed(context, '/weekly-bosses'),
+            ),
+            ListTile(
+              leading: Icon(Icons.ac_unit),
+              title: const Text('Tasks'),
+              onTap: () => Navigator.popAndPushNamed(context, '/weekly-tasks'),
             ),
           ],
         ),
       ),
+      // Pass 'body' as a parameter so that we can customize each widget individually
+      body: body,
     );
   }
 }
