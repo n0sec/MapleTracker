@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 import '../models/character.dart';
+import '../widgets/character_card.dart';
 
-Character test1 = Character('Johnny', 140, CharacterClass(ClassNames.adele));
+Character test1 = Character('Johnny', CharacterClass(ClassNames.adele));
+Character test2 = Character('Solennia', CharacterClass(ClassNames.buccaneer));
+Character test3 =
+    Character('Fireboi', CharacterClass(ClassNames.firePoisonMage));
+Character test4 =
+    Character('Rakanichu', CharacterClass(ClassNames.iceLightningMage));
+Character test5 = Character('Edgelord', CharacterClass(ClassNames.shadower));
+Character test6 = Character('ShakaKhan', CharacterClass(ClassNames.shade));
+Character test7 =
+    Character('PrettyUnicorn', CharacterClass(ClassNames.hoyoung));
 
 class CharacterScreen extends StatefulWidget {
   const CharacterScreen({Key? key, required this.title}) : super(key: key);
@@ -15,7 +25,6 @@ class CharacterScreen extends StatefulWidget {
 class _CharacterScreenState extends State<CharacterScreen> {
   final classNameController = TextEditingController();
   final characterNameController = TextEditingController();
-  final characterLevelController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,31 +32,31 @@ class _CharacterScreenState extends State<CharacterScreen> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: ListView(
+      body: GridView.count(
+        crossAxisCount: 3,
+        crossAxisSpacing: 10.0,
+        mainAxisSpacing: 10.0,
         children: [
-          Container(
-            color: Colors.green,
-            width: double.infinity,
-            height: 85,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text('Character 1'),
-              ],
-            ),
+          CharacterCard(
+            character: test1,
           ),
-          Container(
-            color: Colors.red,
-            width: double.infinity,
-            height: 100,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                test1.characterClass.classImage,
-                Text(test1.name),
-                Text(test1.level.toString()),
-              ],
-            ),
+          CharacterCard(
+            character: test2,
+          ),
+          CharacterCard(
+            character: test3,
+          ),
+          CharacterCard(
+            character: test4,
+          ),
+          CharacterCard(
+            character: test5,
+          ),
+          CharacterCard(
+            character: test6,
+          ),
+          CharacterCard(
+            character: test7,
           ),
         ],
       ),
@@ -77,7 +86,7 @@ class _CharacterScreenState extends State<CharacterScreen> {
                         textInputAction: TextInputAction.next,
                         decoration: const InputDecoration(
                           labelText: 'Class',
-                          prefixIcon: Icon(Icons.abc),
+                          prefixIcon: Icon(Icons.person),
                         ),
                       ),
                       TextField(
@@ -87,15 +96,6 @@ class _CharacterScreenState extends State<CharacterScreen> {
                         decoration: const InputDecoration(
                           labelText: 'Name',
                           prefixIcon: Icon(Icons.abc),
-                        ),
-                      ),
-                      TextField(
-                        controller: characterLevelController,
-                        cursorColor: Colors.black,
-                        textInputAction: TextInputAction.next,
-                        decoration: const InputDecoration(
-                          labelText: 'Level',
-                          prefixIcon: Icon(Icons.numbers),
                         ),
                       ),
                       ElevatedButton(
