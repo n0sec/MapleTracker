@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:maple_tracker/screens/character.dart';
+import 'package:maple_tracker/screens/daily_arcane_river.dart';
+import 'package:maple_tracker/screens/daily_bosses.dart';
+import 'package:maple_tracker/screens/daily_tasks.dart';
 import 'package:maple_tracker/screens/settings.dart';
+import 'package:maple_tracker/screens/weekly_bosses.dart';
+import 'package:maple_tracker/screens/weekly_tasks.dart';
 import 'screens/home.dart';
 
 void main() {
@@ -18,7 +23,7 @@ class MapleTracker extends StatelessWidget {
         primarySwatch: Colors.orange,
         textTheme: GoogleFonts.interTextTheme(),
       ),
-      initialRoute: '/character',
+      initialRoute: '/home',
       routes: {
         '/home': (context) => const HomeScreen(
               title: 'Home',
@@ -26,8 +31,23 @@ class MapleTracker extends StatelessWidget {
         '/settings': (context) => const SettingsScreen(
               title: 'Settings',
             ),
-        '/character': (context) => const CharacterScreen(
+        '/character-select': (context) => const CharacterScreen(
               title: 'Character Select',
+            ),
+        '/daily-bosses': (context) => const DailyBossesScreen(
+              title: 'Daily Bosses',
+            ),
+        '/daily-tasks': (context) => const DailyTasksScreen(
+              title: 'Daily Tasks',
+            ),
+        '/daily-arcane-river': (context) => const DailyArcaneRiver(
+              title: 'Daily Arcane River',
+            ),
+        '/weekly-bosses': (context) => const WeeklyBossesScreen(
+              title: 'Weekly Bosses',
+            ),
+        '/weekly-tasks': (context) => const WeeklyTasksScreen(
+              title: 'Weekly Tasks',
             ),
       },
       debugShowCheckedModeBanner: false,
