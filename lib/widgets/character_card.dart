@@ -1,42 +1,28 @@
 import 'package:flutter/material.dart';
-import '../models/character.dart';
+import 'package:maple_tracker/widgets/character_bottom_sheet.dart';
+import '../adapters/character.dart';
+import 'package:provider/provider.dart';
+import '../providers/characters.dart';
 
-var details = TapDownDetails();
-var tapPosition = details.globalPosition;
-
-class CharacterCard extends StatefulWidget {
+class CharacterCard extends StatelessWidget {
   const CharacterCard({Key? key, required this.character}) : super(key: key);
 
   final Character character;
 
   @override
-  State<CharacterCard> createState() => _CharacterCardState();
-}
-
-class _CharacterCardState extends State<CharacterCard> {
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onLongPress: () {
-        debugPrint(tapPosition.toString());
-        showMenu(
+        showModalBottomSheet(
           context: context,
-          position: const RelativeRect.fromLTRB(25, 25, 0, 0),
-          items: [
-            const PopupMenuItem<String>(
-              value: '1',
-              child: Text(
-                'Add to Favorites',
-                style: TextStyle(color: Colors.blue),
-              ),
+          builder: (context) => CharacterBottomSheet(
+            character: character,
+          ),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(10.0),
             ),
-            const PopupMenuItem<String>(
-                value: '2',
-                child: Text(
-                  'Delete',
-                  style: TextStyle(color: Colors.red),
-                )),
-          ],
+          ),
         );
       },
       child: Card(
@@ -50,11 +36,12 @@ class _CharacterCardState extends State<CharacterCard> {
               children: <Widget>[
                 Expanded(
                   child: Image.asset(
-                    widget.character.characterClass.classImage,
+                    character.characterClass.classImagePath,
                   ),
                 ),
+                const SizedBox(height: 8),
                 Text(
-                  widget.character.name,
+                  character.name,
                   style: const TextStyle(
                     fontSize: 12,
                   ),
